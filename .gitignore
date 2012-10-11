@@ -1,11 +1,7 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-
 # Compiled Dynamic libraries
-*.so
-
+~=+*
+*cache*
+.DS_Store
 # Compiled Static libraries
 *.lai
 *.la

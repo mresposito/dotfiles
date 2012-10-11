@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/michelericcardoesposito/.vim'
+let g:netrw_dirhist_2='/Users/michelericcardoesposito/cs241/svn/esposit5'
+let g:netrw_dirhist_3='/Users/mre/.vim/tagbar/plugin'
+let g:netrw_dirhist_4='/Users/mre/.ssh'
+let g:netrw_dirhist_5='/Users/mre/Desktop/CLCV 115'
