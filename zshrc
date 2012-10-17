@@ -44,11 +44,21 @@ alias wi="ssh whistler"
 alias ta="ssh tahoe "
 alias tools="ssh tools "
 alias magic="ssh magic "
+alias analytics="ssh analytics "
 alias l="ls -lh "
 alias s='ls'
 alias t='python ~/tasks/t.py --task-dir ~/tasks --list tasks'
 
 alias ws='ssh micheler@core1.servqc.net -p 1337 '
+
+alias -g L='| less'
+alias -g H='| head'
+alias -g S='| sort'
+alias -g T='| tail'
+alias -g N='> /dev/null'
+alias -g E='2> /dev/null'
+alias -g W='| wc -l'
+alias -g WC='| wc'
 
 source ~/flutter/code/utils/buildenv.sh
 source $ZSH/oh-my-zsh.sh
@@ -58,6 +68,7 @@ if [ -f `brew --prefix`/etc/autojump ]; then
 fi
 # autojump!
 [[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
+
 
 # Customize to your needs...
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@michele/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/michelericcardoesposito/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/michelericcardoesposito/.rvm/bin

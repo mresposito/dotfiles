@@ -64,7 +64,6 @@ set smarttab                      " insert tabs on the start of a line according
 set history=1000                  " remember more commands and search history
 set undolevels=1000    
 set timeoutlen=500                " Lower timeout for mappings
-map ; :
 
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>           
@@ -83,6 +82,10 @@ endif
 """""""""""""""""""""""""""""""""""""""""
 " MAPPINGS
 """""""""""""""""""""""""""""""""""""""""
+" save yourself some time
+map ; :
+noremap ; :
+
 "better visual
 vnoremap < <gv
 vnoremap > >gv
@@ -114,15 +117,13 @@ noremap j gj
 noremap k gk
 
 " Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
+nnoremap - za
+vnoremap - za
 
 " fast indentation
 noremap + 5= 
 
 " better shortcuts for spell check
-"noremap <right> <C-}>
-"noremap <left> <C-{>
 noremap <right> ]s
 noremap <left> [s
 
