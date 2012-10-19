@@ -83,8 +83,7 @@ endif
 " MAPPINGS
 """""""""""""""""""""""""""""""""""""""""
 " save yourself some time
-map ; :
-noremap ; :
+nnoremap ; :
 
 "better visual
 vnoremap < <gv
@@ -142,6 +141,7 @@ nmap Y y$p
 " Sudo to write
 cmap w!! w !sudo tee % >/dev/null
 
+map ,- :w <CR>!clear <CR>:!python % <CR>
 """""""""""""""""""""""""""""""""""""""""
 " Plugins Settings
 """""""""""""""""""""""""""""""""""""""""

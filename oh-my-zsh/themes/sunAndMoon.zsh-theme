@@ -1,3 +1,5 @@
+
+# borrowing from http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
 function prompt_char {
     git branch >/dev/null 2>/dev/null && echo '♃' && return
     hg root >/dev/null 2>/dev/null && echo '☿' && return
@@ -11,7 +13,7 @@ function prompt_char {
 }
 
 function battery_charge {
-    echo `$python ~/.oh-my-zsh/plugins/batterystats.py` 2>/dev/null
+    echo ` $python ~/.oh-my-zsh/plugins/batterystats.py` 2>/dev/null
 }
 
 function virtualenv_info {
@@ -21,7 +23,7 @@ function virtualenv_info {
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 PROMPT='%{$fg[red]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%} in %{$fg[green]%}%{${fg[green]}%}%3~%{$reset_color%}$(git_prompt_info)$(virtualenv_info) $(prompt_char)%{$reset_color%} '
-RPROMPT='${return_code} $(battery_charge)'
+RPROMPT='${return_code} %{$fg[white]%}%*$(battery_charge)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
