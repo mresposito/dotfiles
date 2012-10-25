@@ -84,6 +84,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""
 " save yourself some time
 nnoremap ; :
+map ; :
 
 "better visual
 vnoremap < <gv
@@ -230,6 +231,13 @@ let g:Powerline_symbols = 'unicode'
 " ************************ tComment ***********************
 map ,c <C-_>
 
+" ************************ Tabularize ***********************
+if exists(":Tabularize")
+    nmap ,a= :Tabularize /=<CR>
+    vmap ,a= :Tabularize /=<CR>
+    nmap ,a: :Tabularize /:\zs<CR>
+    vmap ,a: :Tabularize /:\zs<CR>
+endif
 " ************************* ZoomWin! ****************************
 noremap ,z    :ZoomWin<CR>
 
