@@ -86,6 +86,15 @@ endif
 nnoremap ; :
 map ; :
 
+"
+" replay last macro
+map Q @@
+
+" fast jumps
+map n <C-o>
+map N <C-Tab>
+map ,j :jumps<CR>
+
 "better visual
 vnoremap < <gv
 vnoremap > >gv
@@ -151,7 +160,7 @@ map ,- :w <CR>!clear <CR>:!python % <CR>
 nnoremap ,s          :Ack<Space>
 
 " ********** Gundo    Settings *************
-nnoremap ,9 :GundoToggle<CR>
+nnoremap ,1 :GundoToggle<CR>
 
 " ********** NERDTree Settings ************
 let NERDTreeShowBookmarks=1
@@ -168,8 +177,13 @@ au! BufEnter *.tcc        let b:fswitchdst = 'h,hpp,cpp' | let b:fswitchlocs = '
 au! BufEnter *.hh         let b:fswitchdst = 'h' | let b:fswitchlocs = './,ifrel:|/libs/|/incs/Bot2/|,reg:#libs#incs/Bot2'
 
 " ************************* Command-T *******************************
-nnoremap ,t             :CommandT<CR>
-nnoremap ,b             :CommandTBuffer<CR>
+if has( "gui_macvim")
+  nnoremap ,t             :CommandT<CR>
+  nnoremap ,b             :CommandTBuffer<CR>
+else
+  nnoremap ,t             :CtrlP<CR>
+  nnoremap ,b             :CommandTBuffer<CR>
+endif
 
 set ttimeoutlen=50
 
@@ -197,7 +211,6 @@ if has("mac")
 endif
 "let g:ctrlp_map = '<c-p>'
 
-nnoremap ,f             :CtrlP<CR>
 nnoremap ,r             :CtrlPMRU<CR>
 nnoremap ,e             :CtrlPCurFile<CR>
 nnoremap ,q             :CtrlPQuickfix<CR>
@@ -228,8 +241,6 @@ iab endl      << std::endl;
 " ************************* Power line *******************************
 let g:Powerline_symbols = 'unicode'
 
-" ************************ tComment ***********************
-map ,c <C-_>
 
 " ************************ Tabularize ***********************
 if exists(":Tabularize")
@@ -242,7 +253,22 @@ endif
 noremap ,z    :ZoomWin<CR>
 
 " ************************* Syntastic! ****************************
+
 let g:syntastic_python_checker = 'pylint'
+map ,2 SyntasticToggleMode<CR>
+
+" ************************* Compiling options ****************************
+if has("mac")
+    nnoremap ,dmm             :set makeprg=make\ -j4\ -C\ ~/makeDebug
+  else
+    nnoremap ,dmm             :set makeprg=make\ -j4\ -C\ ~/debug
+endif
+
+nmap ,c           :source ~/.vim/compile/externalcompile.sh<CR>
+let g:vimsh_prompt_override = 1               "  will use normal prompt from your 'real' shell
+let g:vimsh_prompt_pty      = "%m%#"          "  specify overriden prompt
+let g:vimsh_split_open      = 1               "  run vimsh in the current buffer
+let g:vimsh_sh              = "/bin/zsh"      "  shell to run within vimsh
 
 """""""""""""""""""""""""""""""""""""""""
 " SPELL CHECKING

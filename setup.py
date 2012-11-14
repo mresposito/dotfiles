@@ -62,8 +62,12 @@ def checkDestination():
 
   # remove unwanted files
   files.remove( "setup.py" ) 
-  try: files.remove( ".DS_Store" ) 
-  except: pass
+  try: 
+    files.remove( ".DS_Store" ) 
+    files.remove( ".gitignore" ) 
+    files.remove( ".git" ) 
+  except: 
+    pass
 
   for file in files:
     dst_dot =  os.path.join(Cmdline.dst_dir, "."+last(file) )
@@ -71,10 +75,14 @@ def checkDestination():
     if os.path.exists( dst_dot ):
       print "File %s already exists. Do you want to replace it? (y/n)" % dst_dot
       if ask_user( ):
-        try: os.remove( dst_dot)
+        try:
+          if os.path.isdir( dst_dot ):
+            shutil.rmtree( dst_dot)
+          else:
+            os.remove( dst_dot )
         except: 
-          print "Failed to remove file :", last(file)
-          files.remove( file )
+            print "Failed to remove file :", last(file)
+            files.remove( file )
       else:
         files.remove( file )
 
@@ -89,7 +97,7 @@ def linkFiles():
     except OSError:
       print "Failed to link file :", last(file)
 
-def setupGomux( ):
+def setupGomux( ): # FIXME: need sudo permission
   go_mux = os.path.join( Cmdline.curr_dir, "gomux")
   shell_path = '/usr/local/bin'
   dst =   os.path.join(shell_path, "gomux") 

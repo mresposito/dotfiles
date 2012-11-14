@@ -184,7 +184,7 @@ additional-builtins=
 
 # List of method names used to declare (i.e. assign) instance attributes.
 defining-attr-methods=__init__,__new__,setUp
-
+generated-members=objects
 
 [DESIGN]
 
