@@ -74,7 +74,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Or use vividchalk
 
 if has( "gui_macvim")
-  colorscheme greenchalk 
+  colorscheme greenchalkC
 else
   colorscheme lettuce 
 endif
@@ -83,17 +83,16 @@ endif
 " MAPPINGS
 """""""""""""""""""""""""""""""""""""""""
 " save yourself some time
-nnoremap ; :
+" noremap ; :
 map ; :
-
 "
 " replay last macro
 map Q @@
 
 " fast jumps
-map n <C-o>
-map N <C-Tab>
-map ,j :jumps<CR>
+noremap <Up>   <C-o>
+noremap <Down> <C-Tab>
+noremap ,j :jumps<CR>
 
 "better visual
 vnoremap < <gv
@@ -139,8 +138,8 @@ noremap <left> [s
 " fast navigation
 noremap K <S-Up>
 noremap J <S-Down>
-noremap <Up> <S-Up>
-noremap <Down> <S-Down>
+" noremap <Up> <S-Up>
+" noremap <Down> <S-Down>
 
 " deselect highlight
 nmap <silent> ,/ :nohlsearch<CR>
@@ -168,7 +167,7 @@ let NERDTreeShowLineNumbers=1
 map <F1> :NERDTreeToggle<CR>         " toggle NERD tree
 
 " ************************* A.vim! ****************************
-nnoremap ,;     :A<CR>
+" nnoremap ,;     :A<CR>
 
 au! BufEnter *.cpp,*.cxx,*.cc  let b:fswitchdst = 'h,hpp,tcc' | let b:fswitchlocs = './,ifrel:|/libs/|/incs/Bot2/|,reg:#libs#incs/Bot2'
 au! BufEnter *.m,*.mm     let b:fswitchdst = 'h' | let b:fswitchlocs = './,ifrel:|/libs/|/incs/Bot2/|,reg:#libs#incs/Bot2'
@@ -255,7 +254,7 @@ noremap ,z    :ZoomWin<CR>
 " ************************* Syntastic! ****************************
 
 let g:syntastic_python_checker = 'pylint'
-map ,2 SyntasticToggleMode<CR>
+map ,2 :SyntasticToggleMode<CR>
 
 " ************************* Compiling options ****************************
 if has("mac")
