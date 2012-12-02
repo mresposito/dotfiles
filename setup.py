@@ -14,6 +14,9 @@ last =  lambda x:os.path.split(x)[1]
 class Cmdline:
   pass
 
+UNWANTED = [ "setup.py", ".DS_Store" , ".gitignore", ".git", 'gomux',
+              'shells', 'README.md', 'offlineimap.py' ]
+
 def parseCmdline():
   usage = \
   """
@@ -40,10 +43,7 @@ def parseCmdline():
     os.path.makedirs( Cmdline.dst_dir )
 
   Cmdline.curr_dir = os.path.dirname(os.path.abspath(__file__))
-  Cmdline.files = os.listdir(Cmdline.curr_dir)
-  if Cmdline.options.verbose > 0:
-    print Cmdline.files
-  pass
+  return os.listdir(Cmdline.curr_dir)
 
 def ask_user( ):
   if Cmdline.options.force:
@@ -57,67 +57,58 @@ def ask_user( ):
   ask_user( )
   pass
 
-def checkDestination():
-  files = Cmdline.files
 
-  # remove unwanted files
-  files.remove( "setup.py" ) 
-  try: 
-    files.remove( ".DS_Store" ) 
-    files.remove( ".gitignore" ) 
-    files.remove( ".git" ) 
-  except: 
-    pass
+def removePrevious( file ):
+  dst_dot =  os.path.join(Cmdline.dst_dir, "."+last(file) )
+  # check if file exists
+  if os.path.exists( dst_dot ):
+    print "File %s already exists. Do you want to replace it? (y/n)" % dst_dot
+    if ask_user( ):
+      try:
+        if os.path.isdir( dst_dot ) and not os.path.islink( dst_dot):
+          shutil.rmtree( dst_dot)
+        else:
+          os.remove( dst_dot )
+      except: 
+          print "Failed to remove file :", last(file)
+          return False
+    else:
+      return False
+  return True
 
-  for file in files:
-    dst_dot =  os.path.join(Cmdline.dst_dir, "."+last(file) )
-    # check if file exists
-    if os.path.exists( dst_dot ):
-      print "File %s already exists. Do you want to replace it? (y/n)" % dst_dot
-      if ask_user( ):
-        try:
-          if os.path.isdir( dst_dot ):
-            shutil.rmtree( dst_dot)
-          else:
-            os.remove( dst_dot )
-        except: 
-            print "Failed to remove file :", last(file)
-            files.remove( file )
-      else:
-        files.remove( file )
-
-def linkFiles():
-  for file in Cmdline.files:
-    dst =  os.path.join(Cmdline.dst_dir,last(file)) 
-    dst_dot =  os.path.join(Cmdline.dst_dir, "."+last(file) )
-    try:
-      os.symlink ( os.path.join(Cmdline.curr_dir, file), dst )
-      os.rename( dst, dst_dot)
-      print "Created link: ", dst_dot
-    except OSError:
-      print "Failed to link file :", last(file)
+def linkFile( file  ):
+  dst =  os.path.join(Cmdline.dst_dir,last(file)) 
+  dst_dot =  os.path.join(Cmdline.dst_dir, "."+last(file) )
+  try:
+    os.symlink ( os.path.join(Cmdline.curr_dir, file), dst )
+    os.rename( dst, dst_dot)
+    print "Created link: ", dst_dot
+  except OSError:
+    print "Failed to link file :", last(file)
 
 def setupGomux( ): # FIXME: need sudo permission
   go_mux = os.path.join( Cmdline.curr_dir, "gomux")
   shell_path = '/usr/local/bin'
   dst =   os.path.join(shell_path, "gomux") 
-  print go_mux
-  print shell_path
   if os.path.exists( dst ):
     return
-  try: os.symlink( go_mux , dst )
+  try:
+    os.chdir( shell_path )
+    cmd = 'sudo ln -s %s'% go_mux
+    subprocess.call( cmd, shell=True )
+    os.chdir( Cmdline.curr_dir )
   except: print "could not link gomux in", shell_path
-  Cmdline.files.remove("gomux")
 
 # TODO implement backup files
 def main():
-  parseCmdline()
-  if "gomux" in Cmdline.files:
+  files = parseCmdline()
+  if "gomux" in files:
     setupGomux()
-  checkDestination()
+
+  files = filter( lambda x: x not in UNWANTED, files)
+  files = filter( removePrevious, files)
   # script to start tmux with default sessions.
-  linkFiles()
-  pass
+  map( linkFile, files)
   
 if __name__ == '__main__':
   main()

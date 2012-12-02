@@ -13,6 +13,10 @@ let g:Tex_ViewRule_pdf = 'preview'
 "---------------------------------------------------------------------------
 " MAPPING
 "---------------------------------------------------------------------------
+setlocal spell
+
+map <Up> z=
+
 imap <D-i> <Plug>Tex_InsertItemOnThisLine
 imap <D-h> \hline
 imap <D-u> \underline{}<Left><++>

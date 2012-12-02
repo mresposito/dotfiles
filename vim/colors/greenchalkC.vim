@@ -154,14 +154,15 @@ hi Identifier cterm=none
 " Commented numbers at the end are *old* 256 color values
 highlight PreProc       guifg=#EDF8F9
 call s:hifg("Comment"        ,"#AD630E","DarkMagenta",26) " 92
+" 26 instead?
 call s:hifg("Constant"       ,"#B00C48","DarkCyan",21) " 30
 call s:hifg("rubyNumber"     ,"#0CFF33","Yellow",60) " 190
-call s:hifg("String"         ,"#FBF281","LightBlue",0) " 92
-call s:hifg("Identifier"     ,"#0992ED","Green",27)
+call s:hifg("String"         ,"#5f96e2","LightBlue",0) " 92
+call s:hifg("Identifier"     ,"#871BE0","Green",27)
 call s:hifg("Statement"      ,"#0EAD40","Brown",68) " 202
 call s:hifg("PreProc"        ,"#AAFFFF","LightCyan",47) " 213
 call s:hifg("railsUserMethod","#000099","DarkBlue",27)
-call s:hifg("Type"           ,"#871BE0","Yellow",57) " 101
+call s:hifg("Type"           ,"#0992ED","Yellow",57) " 101
 call s:hifg("railsUserClass" ,"#AAAAAA","Grey",7) " 101
 call s:hifg("Special"        ,"#33AA00","DarkGreen",24) " 7
 call s:hifg("Regexp"         ,"#44B4CC","DarkCyan",21) " 74

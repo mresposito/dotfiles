@@ -70,4 +70,4 @@ fi
 
 
 # Customize to your needs...
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@michele/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/michelericcardoesposito/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/michelericcardoesposito/.rvm/bin
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@michele/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/michelericcardoesposito/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/michelericcardoesposito/.rvm/bin:/usr/texbin
