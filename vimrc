@@ -74,9 +74,9 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Or use vividchalk
 
 if has( "gui_macvim")
-  colorscheme greenchalkC
+  colorscheme greenchalk
 else
-  colorscheme lettuce 
+  colorscheme greenchalkTerm
 endif
 
 """""""""""""""""""""""""""""""""""""""""

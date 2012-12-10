@@ -67,7 +67,17 @@ if [ -f `brew --prefix`/etc/autojump ]; then
 fi
 # autojump!
 [[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
-
+# FASD
+# https://github.com/clvv/fasd
+# eval "$(fasd --init posix-alias zsh-ccomp)" 
+# alias a='fasd -a'        # any
+# alias ss='fasd -si'      # show / search / select
+# alias d='fasd -d'        # directory
+# alias f='fasd -f'        # file
+# alias sd='fasd -sid'     # interactive directory selection
+# alias sf='fasd -sif'     # interactive file selection
+# alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+# alias zz='fasd_cd -d -i' # cd with interactive selection
 
 # Customize to your needs...
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@michele/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/michelericcardoesposito/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/michelericcardoesposito/.rvm/bin:/usr/texbin
