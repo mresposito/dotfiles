@@ -28,7 +28,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git history-substring-search osx ssh-agent svn vi-mode lol macports autojump compleat zsh-syntax-highlighting zsh-history-substring-search zsh-output-highlighting)
+plugins=(git autojump history-substring-search osx ssh-agent svn vi-mode lol macports compleat zsh-syntax-highlighting zsh-history-substring-search zsh-output-highlighting)
 
 bindkey '^r' history-incremental-search-backward
 bindkey ' ' magic-space    # also do history expansion on space
@@ -46,7 +46,6 @@ alias magic="ssh magic "
 alias analytics="ssh analytics "
 alias l="ls -lh "
 alias s='ls'
-alias t='python ~/tasks/t.py --task-dir ~/tasks --list tasks'
 
 alias ws='ssh micheler@core1.servqc.net -p 1337 '
 
@@ -58,26 +57,10 @@ alias -g N='> /dev/null'
 alias -g E='2> /dev/null'
 alias -g W='| wc -l'
 alias -g WC='| wc'
-alias mutt='cd ~/Desktop && mutt'
 source ~/flutter/code/utils/buildenv.sh
 source $ZSH/oh-my-zsh.sh
 
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
-fi
-# autojump!
-[[ -s ~/.autojump/etc/profile.d/autojump.zsh ]] && source ~/.autojump/etc/profile.d/autojump.zsh
-# FASD
-# https://github.com/clvv/fasd
-# eval "$(fasd --init posix-alias zsh-ccomp)" 
-# alias a='fasd -a'        # any
-# alias ss='fasd -si'      # show / search / select
-# alias d='fasd -d'        # directory
-# alias f='fasd -f'        # file
-# alias sd='fasd -sid'     # interactive directory selection
-# alias sf='fasd -sif'     # interactive file selection
-# alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-# alias zz='fasd_cd -d -i' # cd with interactive selection
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
 
 # Customize to your needs...
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@michele/bin:/Users/michelericcardoesposito/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/michelericcardoesposito/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/michelericcardoesposito/.rvm/bin:/usr/texbin
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/mre/.rbenv/bin:/Users/mre/.rbenv/versions/1.9.3-p327/bin/:/usr/texbin

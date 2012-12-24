@@ -1,4 +1,4 @@
-"This is my TEX file
+" This is my TEX file
 "Created by Michele Esposito
 "micheleresposito@gmail.com
 
@@ -10,6 +10,8 @@
 
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_ViewRule_pdf = 'preview'
+let g:Tex_CompileRule_dvi = 'latex --interaction=nonstopmode -shell-escape $*'
+let g:Tex_CompileRule_pdf = 'pdflatex -shell-escape --interaction=nonstopmode $*'
 "---------------------------------------------------------------------------
 " MAPPING
 "---------------------------------------------------------------------------
@@ -18,9 +20,13 @@ setlocal spell
 map <Up> z=
 
 imap <D-i> <Plug>Tex_InsertItemOnThisLine
-imap <D-h> \hline
 imap <D-u> \underline{}<Left><++>
 imap <D-e> \emph{
+
+imap     <C-t> <F7>
+nnoremap <C-t> <F7>
+imap     <C-s> <Plug>IMAP_JumpForward
+nnoremap <C-s> <Plug>IMAP_JumpForward
 "---------------------------------
 "autoclose brackets
 "Actually you can get a similar
@@ -28,6 +34,7 @@ imap <D-e> \emph{
 "and then press the tab key. In case
 "you prefer snippets, comment the
 "following 3 lines
+imap ,h \hline
 imap ,i \item 
 imap `[ \forall
 imap `] \exists

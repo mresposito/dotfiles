@@ -156,7 +156,7 @@ map ,- :w <CR>!clear <CR>:!python % <CR>
 """""""""""""""""""""""""""""""""""""""""
 
 " ************************* Ack-Grep Settings *****************************
-nnoremap ,s          :Ack<Space>
+nnoremap ,sa          :Ack<Space>
 
 " ********** Gundo    Settings *************
 nnoremap ,1 :GundoToggle<CR>
@@ -186,11 +186,6 @@ endif
 
 set ttimeoutlen=50
 
-if &term =~ "xterm" || &term =~ "screen"
-  let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
-  let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>OB']
-  let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>OA']
-endif
 " ************************* Ctrl-P *******************************
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'line', 'changes', 'undo']
 
