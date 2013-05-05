@@ -55,8 +55,10 @@ tmux set-window-option -t $SESSION:0 automatic-rename off
 # keep window open and use respawn-window to restart
 #tmux set-window-option -t $SESSION:0 remain-on-exit on
 tmux new-window -t $SESSION:1 -n mre 
-# tmux new-window -t $SESSION:2 -n chora    'cd ~/chordbook; python manage.py runserver'
-tmux new-window -t $SESSION:2 -n vmail    
+tmux new-window -t $SESSION:2 -n math416 
+tmux new-window -t $SESSION:3 -n math444  
+tmux new-window -t $SESSION:4 -n cs440 -d 'cd ~/cs440;' 
+tmux new-window -t $SESSION:5 -n cs421    
 
 # all done. select starting window and get to work
 # you may need to cycle through windows and type in passwords

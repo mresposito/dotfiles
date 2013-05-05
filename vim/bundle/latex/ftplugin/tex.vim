@@ -5,7 +5,6 @@
 "--------------------------------------------------------------------------
 " General settings
 "--------------------------------------------------------------------------
-"let g:autoclose = 1
 "let g:Tex_SmartKeyQuote = 1
 
 let g:Tex_DefaultTargetFormat='pdf'
@@ -19,12 +18,18 @@ setlocal spell
 
 map <Up> z=
 
+let g:AutoClosePairs_add = "$ |"
+let g:AutoClosePairs_del = "`"
+
 imap <D-i> <Plug>Tex_InsertItemOnThisLine
 imap <D-u> \underline{}<Left><++>
 imap <D-e> \emph{
 
-imap     <C-t> <F7>
-nnoremap <C-t> <F7>
+imap     \{ \{\}<Left><Left>
+imap     \[ \[\]<Left><Left>
+imap     \( \(\)<Left><Left>
+imap     <C-c> <F7>
+nnoremap <C-c> <F7>
 imap     <C-s> <Plug>IMAP_JumpForward
 nnoremap <C-s> <Plug>IMAP_JumpForward
 "---------------------------------
@@ -36,13 +41,16 @@ nnoremap <C-s> <Plug>IMAP_JumpForward
 "following 3 lines
 imap ,h \hline
 imap ,i \item 
-imap `[ \forall
-imap `] \exists
-imap `. \rightarrow
-imap `< \leq
-imap `> \geq
-imap `N \mathbb{N}
-imap `R \mathbb{R}
+imap ,n \in
+imap ,u \subset
+imap ,q \subseteq
+imap ,[ \forall
+imap ,] \exists
+imap ,. \rightarrow
+imap ,< \leq
+imap ,> \geq
+imap ,N \mathbb{N}
+imap ,r \mathbb{R}
 "---------------------------------------------------------------------------
 " AUTOCORRECTION
 "---------------------------------------------------------------------------

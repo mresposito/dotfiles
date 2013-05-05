@@ -1,10 +1,7 @@
 " My personal .vimrc file!
 " Mantained by Michele Esposito <micheleresposito@gmail.com>
-" TODO:
-" full path on status line
-" t comment
-" surrounding
-" latex
+" Good post
+" http://statico.github.com/vim.html
 """""""""""""""""""""""""""""""""""""""""
 " GENERAL SETTINGS!!!
 """""""""""""""""""""""""""""""""""""""""
@@ -19,7 +16,8 @@ filetype plugin indent on         " Turn on file type detection.
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 set guioptions-=T                 " hide toolbar
-set fillchars=                    " emply splitbars"
+set fillchars=                    " emply splitbars
+set guifont=Inconsolata:h13       " set font
 
 set encoding=utf-8
 set backspace=indent,eol,start    " Intuitive backspacing.
@@ -29,10 +27,10 @@ set laststatus=2                  " Show the status line all the time
 "" COMPLETION""
 set complete=.,b,u,]
 set wildmenu                      " Enhanced command line completion.
-set completeopt=menu,preview     
-set wildmode=full                 " Enable command-line tab completion
-set completeopt=menu              " Don't show extra info on completions
-set wildignore+=*.o,*.obj,*.pyc,*.DS_Store,*.db " Hide irrelevent matches
+set completeopt=menu,preview
+set wildmode=longest,list
+" set completeopt=menu            " Don't show extra info on completions
+set wildignore+=*.o,*.obj,*.pyc,*.class  " Hide irrelevent matches
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
@@ -74,7 +72,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Or use vividchalk
 
 if has( "gui_macvim")
-  colorscheme greenchalk
+  colorscheme softchalk
 else
   colorscheme greenchalkTerm
 endif
@@ -82,16 +80,22 @@ endif
 """""""""""""""""""""""""""""""""""""""""
 " MAPPINGS
 """""""""""""""""""""""""""""""""""""""""
-" save yourself some time
-" noremap ; :
-map ; :
-"
 " replay last macro
 map Q @@
 
+" change directory to current open file
+noremap ,d :lcd %:p:h<CR>
+
+" fast jump between files
+noremap ,e :e#<CR>
+
+" quick shortcut
+noremap <silent> ,o :!open assignment.pdf<CR><CR>
+
 " fast jumps
-noremap <Up>   <C-o>
-noremap <Down> <C-Tab>
+noremap <Up>   g;
+noremap <Down> g,
+noremap <S-Tab> <C-o>
 noremap ,j :jumps<CR>
 
 "better visual
@@ -112,7 +116,6 @@ map <leader>tp :tabprevious<cr>
 map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
-
 
 " remap for easier split window navigation
 noremap <C-h> <C-w>h
@@ -138,8 +141,6 @@ noremap <left> [s
 " fast navigation
 noremap K <S-Up>
 noremap J <S-Down>
-" noremap <Up> <S-Up>
-" noremap <Down> <S-Down>
 
 " deselect highlight
 nmap <silent> ,/ :nohlsearch<CR>
@@ -151,11 +152,14 @@ nmap Y y$p
 cmap w!! w !sudo tee % >/dev/null
 
 map ,- :w <CR>!clear <CR>:!python % <CR>
+
+
 """""""""""""""""""""""""""""""""""""""""
 " Plugins Settings
 """""""""""""""""""""""""""""""""""""""""
+noremap <F2> :ConqueTerm /bin/zsh<CR>
 
-" ************************* Ack-Grep Settings *****************************
+" ************ Ack-Grep Settings **********
 nnoremap ,sa          :Ack<Space>
 
 " ********** Gundo    Settings *************
@@ -164,16 +168,7 @@ nnoremap ,1 :GundoToggle<CR>
 " ********** NERDTree Settings ************
 let NERDTreeShowBookmarks=1
 let NERDTreeShowLineNumbers=1
-map <F1> :NERDTreeToggle<CR>         " toggle NERD tree
-
-" ************************* A.vim! ****************************
-" nnoremap ,;     :A<CR>
-
-au! BufEnter *.cpp,*.cxx,*.cc  let b:fswitchdst = 'h,hpp,tcc' | let b:fswitchlocs = './,ifrel:|/libs/|/incs/Bot2/|,reg:#libs#incs/Bot2'
-au! BufEnter *.m,*.mm     let b:fswitchdst = 'h' | let b:fswitchlocs = './,ifrel:|/libs/|/incs/Bot2/|,reg:#libs#incs/Bot2'
-au! BufEnter *.h,*.hpp    let b:fswitchdst = 'hh,cpp,cc,cxx,c,tcc,mm,m' | let b:fswitchlocs = './,ifrel:|/incs/Bot2/|/libs/|,reg:#incs/Bot2#libs'
-au! BufEnter *.tcc        let b:fswitchdst = 'h,hpp,cpp' | let b:fswitchlocs = './,ifrel:|/incs/Bot2/|/libs/|,reg:#incs/Bot2#libs'
-au! BufEnter *.hh         let b:fswitchdst = 'h' | let b:fswitchlocs = './,ifrel:|/libs/|/incs/Bot2/|,reg:#libs#incs/Bot2'
+map <F1> :NERDTreeToggle<CR>        " toggle NERD tree
 
 " ************************* Command-T *******************************
 if has( "gui_macvim")
@@ -197,7 +192,7 @@ let g:ctrlp_switch_buffer = 0
 "set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX impacts other plugins too
 let g:ctrlp_custom_ignore = {
       \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-      \ 'file': '\.exe$\|\.so$\|\.dll$\|\.jpg$\|\.sw[po]$\|\.jpeg$\|\.png$\|\.mov$\|\.flv$\|\.tiff$\|\.tga$\|__Tagbar__$\|cscope.out$\|tags$\|\.defines$\|\.clang_complete$\|\.DS_Store$',
+      \ 'file': '\.exe$\|\.so$\|\.dll$\|\.jpg$\|\.sw[po]$\|\.jpeg$\|\.png$\|\.mov$\|\.flv$\|\.tiff$\|\.tga$\|__Tagbar__$\|cscope.out$\|\.class$\|tags$\|\.defines$\|\.clang_complete$\|\.DS_Store$',
       \ }
 
 if has("mac")
@@ -206,13 +201,12 @@ endif
 "let g:ctrlp_map = '<c-p>'
 
 nnoremap ,r             :CtrlPMRU<CR>
-nnoremap ,e             :CtrlPCurFile<CR>
 nnoremap ,q             :CtrlPQuickfix<CR>
 nnoremap ,g             :CtrlPBufTag<CR>
 
-nnoremap ,zr            :CtrlPReload<CR>
+nnoremap ; :CtrlPBuffer<CR>
+
 nnoremap ,za            :CtrlPTag<CR>
-nnoremap ,zl            :CtrlPBufLine<CR>
 nnoremap ,zh            :CtrlPChange<CR>
 
 " ************************* Tags   ****************************
@@ -227,6 +221,11 @@ if has("mac")
   set csprg=/usr/local/bin/cscope
 endif
 
+" ********************* Lusty  ****************
+map ,f :LustyBufferExplorer<CR>
+map ,x :LustyFilesystemExplorerFromHere<CR>
+
+"
 " ************************* C, C++ Settings *****************************
 iab cerr      std::cerr <<
 iab cout      std::cout <<
@@ -287,7 +286,9 @@ au! BufRead,BufNewFile *.json set filetype=json
 " Settings for latex-suite
 
 " Used for Vim Latex
-map <C-p> <F7>
+
+" let g:AutoClosePairs_add = "$ "
+let g:AutoClosePairs_del = "`"
 
 let g:tex_flavor='latex'
 set grepprg=grep\ -nH\ $*

@@ -1,0 +1,8 @@
+- HardStat*.json
+- in.train
+- in.test
+- bg.train
+- m*.detect
+- *.ser
+- AppClassDetector
+- out

@@ -1,95 +1,4 @@
-// "use strict";
-XML.ignoreWhitespace = false;
-XML.prettyPrinting = false;
-var INFO =
-<plugin name="buftabs" version="1.1.0"
-    href="https://github.com/grassofhust/buftabs"
-    summary="Buftabs: show the tabbar in the statusline"
-    xmlns={NS}>
-    <author email="lucas@glacicle.org" href="http://git.glacicle.org/vimperator-buftabs/">Lucas de Vries</author>
-    <author email="frederick.zou@gmail.com">Yang Zou</author>
-    <license href="http://sam.zoy.org/wtfpl/">WTFPL</license>
-    <project name="Pentadactyl" minVersion="1.0"/>
-    <p>
-        When the script is loaded it hijacks the statusline to display a
-        list of tabs, you can use the <o>buftabs</o> option to toggle it
-        on or off.
-    </p>
-
-    <p>
-        Use the BufTab, BufTabAlternate, BufTabSelected and BufTabs highlight groups to style the
-        buftabs. Make sure you have called the "loadplugins" command
-        before using the highlight groups in your vimperatorrc.
-    </p>
-
-    <p>
-        Thanks Lucas de Vries and other folks on vimperator/dactyl. This plugins was initial developed by Lucas de Vries.
-    </p>
-    <item>
-        <tags>'bt' 'buftabs'</tags>
-        <spec>'buftabs' 'bt'</spec>
-        <type>boolean</type> <default>true</default>
-        <description>
-            Toggle buftabs on or off.
-        </description>
-    </item>
-    <item>
-        <tags>'btr' 'buftabs-rnu'</tags>
-        <spec>'buftabs-rnu' 'btr'</spec>
-        <type>boolean</type> <default>true</default>
-        <description>Relative tabnumber.</description>
-    </item>
-    <item>
-        <tags>'btp' 'buftabs-progress'</tags>
-        <spec>'buftabs-progress' 'btp'</spec>
-        <type>boolean</type> <default>true</default>
-        <description>Toggle progressbar on or off.</description>
-    </item>
-    <item>
-        <tags>'bte' 'buftabs-elem'</tags>
-        <spec>'buftabs-elem' 'bte'</spec>
-        <type>charlist</type> <default>"nthb"</default>
-        <description>
-            <p>Define which sections are shown.</p>
-        <p>Supported characters:</p>
-
-        <dl dt="width: 6em;">
-            <dt>i</dt>      <dd>Favicon</dd>
-            <dt>n</dt>      <dd>Tabnumber</dd>
-            <dt>t</dt>      <dd>Tab title</dd>
-            <dt>h</dt>      <dd>Forward/Backward indicator</dd>
-            <dt>b</dt>      <dd>Heart indicator</dd>
-        </dl>
-        </description>
-    </item>
-    <item>
-      <tags>:bt :buftabs</tags>
-      <strut/>
-      <spec>:buftabs</spec>
-      <description>
-        <p>Toggle buftabs on or off.</p>
-      </description>
-    </item>
-    <p>There are four highlight groups: BufTab, BufTabSelected, BufTabAlternate and BufTabs</p>
-
-    <dl dt="width: 12em;">
-        <dt>BufTab</dt>                 <dd>Tabs</dd>
-        <dt>BufTabSelected</dt>         <dd>Selected Tab</dd>
-        <dt>BufTabAlternate</dt>        <dd>Previously selected tab</dd>
-        <dt>BufTabs</dt>                <dd>Buftabs itself</dd>
-    </dl>
-
-    <p>Recommend Settings:</p>
-    <code>
-        hi -a BufTabSelected                            background-repeat:no-repeat; background-size:contain, contain; background-position: 4px top; color:#FFF; background-color:#000; padding:0 4px; font-weight:normal;border-radius:2px;
-        hi -a BufTabAlternate                           background-repeat:no-repeat; background-size:contain, contain; background-position: 4px top; padding:0 4px; cursor:pointer !important;
-        hi -a BufTab                                    background-repeat:no-repeat; background-size:contain, contain; background-position: 4px top; padding:0 4px; cursor:pointer !important;
-        hi -a BufTab:hover                              color:#2e3330;background-color: #88b090; border-radius:2px;
-        hi -a BufTabAlternate:hover                     color:#2e3330;background-color: #88b090; border-radius:2px;
-    </code>
-    <Warning>Buftabs does not support firefox 3.6.</Warning>
-</plugin>;
-
+"use strict";
 let buftabs = {
     id : 'dactyl-statusline-field-buftabs',
     fullLoad: false,
@@ -98,9 +7,8 @@ let buftabs = {
             if (document.getElementById(buftabs.id))
                 commandline.widgets.updateVisibility();
             else {
-				let widget = util.xmlToDom(
-					<hbox xmlns={XUL} highlight="BufTabs" id={buftabs.id} flex="1"/>,
-					document);
+                let widget = DOM.fromJSON(["hbox", {"xmlns": XUL, "id": buftabs.id, "flex": 1}], document);
+                widget.setAttribute("highlight", "BufTabs");
                 statusline.widgets.url.parentNode.insertBefore(widget, statusline.widgets.url.nextSibling);
                 commandline.widgets.addElement({
                         name: "buftabs",
@@ -109,7 +17,7 @@ let buftabs = {
                         noValue: true
                 });
                 commandline.widgets.statusbar.buftabs.addEventListener("DOMMouseScroll", function(event) {
-                        gBrowser.tabContainer.advanceSelectedTab(event.detail < 0 ? -1 : 1, true);
+                        window.gBrowser.tabContainer.advanceSelectedTab(event.detail < 0 ? -1 : 1, true);
                         event.stopPropagation();
                     }, true);
 
@@ -131,7 +39,7 @@ let buftabs = {
         unregisterMyListener();
     },
 
-    get options() buftabs._options || {'elem':'nthb', 'buftabs': true, 'rnu': true, 'progress': true},
+    get options() buftabs._options || {'elem':'nthbi', 'buftabs': true, 'rnu': true, 'progress': true},
     set options(options) {
         buftabs._options = {
             'elem' : 'elem' in options ? options['elem'] : buftabs.options['elem'],
@@ -156,7 +64,7 @@ let buftabs = {
     Otab : function (arg) {
         if (typeof arg == 'object')
             return arg;
-        return gBrowser.tabs[arg];
+        return window.gBrowser.tabs[arg];
     },
 
     mb_strlen: function (str) {
@@ -181,7 +89,7 @@ let buftabs = {
     Obrowser: function(arg) {
         if (typeof arg == 'object') // a label obj
             return arg;
-        return gBrowser.getBrowserAtIndex(arg);
+        return window.gBrowser.getBrowserAtIndex(arg);
     },
     Olabel: function (arg) {
         if (typeof arg == 'object')
@@ -223,13 +131,13 @@ let buftabs = {
         else if (image == "")
             image = BookmarkCache.DEFAULT_FAVICON;
 
-        label.style.paddingLeft="21px";
+        label.style.paddingLeft="20px";
         label.style.backgroundImage='url("'+image+'")';
     },
 
     removeFavicon : function (arg) {
         let label = buftabs.Olabel(arg);
-        label.style.paddingLeft="4px";
+        label.style.paddingLeft="2px";
         label.style.backgroundImage='none';
     },
 
@@ -289,20 +197,6 @@ let buftabs = {
 
     },
 
-    buildContainer: function () {
-        let container = util.xmlToDom(
-            <hbox xmlns={XUL} flex="0" tooltiptext="">
-                <xul:image flex="0" key="image" class="plain show buftabs-image" />
-                <xul:label flex="0" key="tabnumber" class="plain show buftabs-tabnumber" />
-                <xul:label flex="0" key="indexnumber" class="plain show buftabs-indexnumber" />
-                <xul:label flex="0" key="info" class="plain show buftabs-info" />
-                <xul:label flex="0" key="history" class="plain show buftabs-history" />
-                <xul:label flex="0" key="bookmark" class="plain show buftabs-bookmark" />
-            </hbox>,
-            document);
-        return container;
-    },
-
     obtainElements: function (container) {
         let nodes = container.childNodes;
         for each (let node in nodes) {
@@ -322,7 +216,7 @@ let buftabs = {
     buildLabels: function () {
         // Get buftabbar
         let btabs = buftabs.btabs;
-        let visibleTabs_length = gBrowser.visibleTabs.length;
+        let visibleTabs_length = window.gBrowser.visibleTabs.length;
 
         // Make sure we have an appropriate amount of labels
         while (btabs.childNodes.length > visibleTabs_length)
@@ -337,11 +231,11 @@ let buftabs = {
             }, false);
             label.addEventListener("click", function (ev) {
                     if (ev.button == 0)
-                        gBrowser.selectTabAtIndex(this.tabpos);
+                        window.gBrowser.selectTabAtIndex(this.tabpos);
                     else if (ev.button == 1) {
-                        if (gBrowser.visibleTabs[this.tabpos + 1])
-                            gBrowser.tabContainer.selectedItem = gBrowser.visibleTabs[this.tabpos + 1]; // conflict with tab-option.js?
-                        gBrowser.removeTab(gBrowser.tabContainer.getItemAtIndex(this.tabindex));
+                        if (window.gBrowser.visibleTabs[this.tabpos + 1])
+                            window.gBrowser.tabContainer.selectedItem = window.gBrowser.visibleTabs[this.tabpos + 1]; // conflict with tab-option.js?
+                        window.gBrowser.removeTab(window.gBrowser.tabContainer.getItemAtIndex(this.tabindex));
                     }
             }, false);
         }
@@ -353,7 +247,7 @@ let buftabs = {
 
         buftabs.buildLabels();
 
-        let visibleTabs = gBrowser.visibleTabs;
+        let visibleTabs = window.gBrowser.visibleTabs;
         // Create the new tabs
         for (let [i, tab] in iter(visibleTabs)) {
             // Create label
@@ -361,7 +255,7 @@ let buftabs = {
 
             // Fill label
             label.tabpos = i;
-            label.tabindex = gBrowser.tabContainer.getIndexOfItem(tab);
+            label.tabindex = window.gBrowser.tabContainer.getIndexOfItem(tab);
 
             buftabs.fillLabel(label, tab);
         }
@@ -393,8 +287,8 @@ let buftabs = {
 
         buftabs.buildLabels();
 
-        let visibleTabs = gBrowser.visibleTabs;
-        let closed_labelIndex = gBrowser.tabContainer.getIndexOfItem(aEvent.target);
+        let visibleTabs = window.gBrowser.visibleTabs;
+        let closed_labelIndex = window.gBrowser.tabContainer.getIndexOfItem(aEvent.target);
         // Create the new tabs
         for (let [i, tab] in iter(visibleTabs)) {
             // Create label
@@ -402,7 +296,7 @@ let buftabs = {
 
             // Fill label
             label.tabpos = i;
-            label.tabindex = gBrowser.tabContainer.getIndexOfItem(tab);
+            label.tabindex = window.gBrowser.tabContainer.getIndexOfItem(tab);
             if (label.tabindex > closed_labelIndex) // dirty hack, I don't know why
                 label.tabindex = label.tabindex - 1;
 
@@ -452,11 +346,12 @@ let buftabs = {
             label.setAttribute("pinned", "true");
             buftabs.setFavicon(label, tab);
             // tab index
-            if (buftabs.options['elem'].indexOf('n') >= 0) {
-                let index = label.tabpos + 1;
-                if (buftabs.options['rnu'])
-                    index = label.tabindex + 1;
-                label.setAttribute("value", "[" + index + "]");
+            if (buftabs.options['elem'].indexOf('n') >= 0 &&
+                !buftabs.options['rnu']) {
+                let index = label.tabindex + 1;
+                label.setAttribute("value", index + " ");
+            } else {
+                label.setAttribute("value", "");
             }
         } else {
             label.setAttribute("pinned", "false");
@@ -478,14 +373,14 @@ let buftabs = {
             if (buftabs.options['elem'].indexOf('n') >= 0) {
                 if (buftabs.options['rnu']) {
                     if (indicate.length > 0)
-                        indicate = "[" + (label.tabpos + 1) + " " + indicate + "]";
+                        indicate = (label.tabpos + 1) + " " + indicate + " ";
                     else
-                        indicate = "[" + (label.tabpos + 1) + "]";
+                        indicate = (label.tabpos + 1) + " ";
                 } else {
                     if (indicate.length > 0)
-                        indicate = "[" + (label.tabindex + 1) + " " + indicate + "]";
+                        indicate = (label.tabindex + 1) + " " + indicate + " ";
                     else
-                        indicate = "[" + (label.tabindex + 1) + "]";
+                        indicate = (label.tabindex + 1) + " ";
                 }
             }
 
@@ -501,12 +396,12 @@ let buftabs = {
 
         // Set the correct highlight group
         if (tabs.index(null, true) == label.tabpos)
-            label.setAttributeNS(NS.uri, "highlight", "BufTabSelected");
+            label.setAttribute("highlight", "BufTabSelected");
         else {
             if (tabs.index(tabs.alternate, true) == label.tabpos)
-                label.setAttributeNS(NS.uri, "highlight", "BufTabAlternate");
+                label.setAttribute("highlight", "BufTabAlternate");
             else
-                label.setAttributeNS(NS.uri, "highlight", "BufTab");
+                label.setAttribute("highlight", "BufTab");
         }
 
     },
@@ -521,26 +416,26 @@ let buftabs = {
 };
 
 function registerMyListener() {
-    gBrowser.tabContainer.addEventListener("TabOpen", buftabs.updateTabOpen, false);
-    gBrowser.tabContainer.addEventListener("TabHide", buftabs.updateTabHide, false);
-    gBrowser.tabContainer.addEventListener("TabMove", buftabs.updateTabMove, false);
-    gBrowser.tabContainer.addEventListener("TabClose", buftabs.updateTabClose, false);
-    gBrowser.tabContainer.addEventListener("TabSelect", buftabs.updateTabSelect, false);
-    gBrowser.tabContainer.addEventListener("TabAttrModified", buftabs.updateTabAttrModified, false); // updateed, use fillLabel
-    gBrowser.tabContainer.addEventListener("TabPinned", buftabs.updateTabPinned, false);
-    gBrowser.tabContainer.addEventListener("TabUnpinned", buftabs.updateTabUnpinned, false);
+    window.gBrowser.tabContainer.addEventListener("TabOpen", buftabs.updateTabOpen, false);
+    window.gBrowser.tabContainer.addEventListener("TabHide", buftabs.updateTabHide, false);
+    window.gBrowser.tabContainer.addEventListener("TabMove", buftabs.updateTabMove, false);
+    window.gBrowser.tabContainer.addEventListener("TabClose", buftabs.updateTabClose, false);
+    window.gBrowser.tabContainer.addEventListener("TabSelect", buftabs.updateTabSelect, false);
+    window.gBrowser.tabContainer.addEventListener("TabAttrModified", buftabs.updateTabAttrModified, false); // updateed, use fillLabel
+    window.gBrowser.tabContainer.addEventListener("TabPinned", buftabs.updateTabPinned, false);
+    window.gBrowser.tabContainer.addEventListener("TabUnpinned", buftabs.updateTabUnpinned, false);
     window.addEventListener("fullscreen", buftabs.layout, false);
 }
 
 function unregisterMyListener() {
-    gBrowser.tabContainer.removeEventListener("TabOpen", buftabs.updateTabOpen, false);
-    gBrowser.tabContainer.removeEventListener("TabHide", buftabs.updateTabHide, false);
-    gBrowser.tabContainer.removeEventListener("TabMove", buftabs.updateTabMove, false);
-    gBrowser.tabContainer.removeEventListener("TabClose", buftabs.updateTabClose, false);
-    gBrowser.tabContainer.removeEventListener("TabSelect", buftabs.updateTabSelect, false);
-    gBrowser.tabContainer.removeEventListener("TabAttrModified", buftabs.updateTabAttrModified, false);
-    gBrowser.tabContainer.removeEventListener("TabPinned", buftabs.updateTabPinned, false);
-    gBrowser.tabContainer.removeEventListener("TabUnpinned", buftabs.updateTabUnpinned, false);
+    window.gBrowser.tabContainer.removeEventListener("TabOpen", buftabs.updateTabOpen, false);
+    window.gBrowser.tabContainer.removeEventListener("TabHide", buftabs.updateTabHide, false);
+    window.gBrowser.tabContainer.removeEventListener("TabMove", buftabs.updateTabMove, false);
+    window.gBrowser.tabContainer.removeEventListener("TabClose", buftabs.updateTabClose, false);
+    window.gBrowser.tabContainer.removeEventListener("TabSelect", buftabs.updateTabSelect, false);
+    window.gBrowser.tabContainer.removeEventListener("TabAttrModified", buftabs.updateTabAttrModified, false);
+    window.gBrowser.tabContainer.removeEventListener("TabPinned", buftabs.updateTabPinned, false);
+    window.gBrowser.tabContainer.removeEventListener("TabUnpinned", buftabs.updateTabUnpinned, false);
     window.removeEventListener("fullscreen", buftabs.layout, false);
 }
 buftabs.init();
@@ -574,7 +469,7 @@ group.options.add(["buftabs-rnu", "btr"],
 group.options.add(["buftabs-elem", "bte"],
         "Show or hide certain elemments",
         "charlist",
-        "nthb",
+        "nthbi",
         {
             values: {
                 'i': 'Favicon',
@@ -612,12 +507,11 @@ group.commands.add(["buf[tabs]", "bt"],
 );
 
 // Initialise highlight groups
-highlight.loadCSS(<![CDATA[
-	!BufTabs                                   {color: inherit; margin:0 !important; padding:0 !important; overflow:hidden;}
-	!BufTabSelected                            {background-repeat:no-repeat; background-size:contain, contain; background-position: 4px top; color:#000; background-color:#fff; margin:0 1px !important; font-weight:normal; border-bottom-left-radius:2px; border-bottom-right-radius:2px;padding-right:0.4em;max-width:120px;}
-	!BufTabAlternate                           {background-repeat:no-repeat; background-size:contain, contain; background-position: 4px top; margin:0 1px !important; cursor:pointer !important;max-width:120px;}
-	!BufTab                                    {background-repeat:no-repeat; background-size:contain, contain; background-position: 4px top; margin:0 1px !important; cursor:pointer !important;max-width:120px;}
-	!BufTab:hover                              {color:#2e3330;background-color: #88b090; border-bottom-left-radius:2px; border-bottom-right-radius:2px;padding-right:0.4em;}
-	!BufTabAlternate:hover                     {color:#2e3330;background-color: #88b090; border-bottom-left-radius:2px; border-bottom-right-radius:2px;padding-right:0.4em;}
-]]>);
-
+highlight.loadCSS(
+    "[highlight~=\"BufTabs\"]               {color: inherit; margin:0 !important; padding:0 !important; overflow:hidden;}\n"+
+    "[highlight~=\"BufTabSelected\"]        {background-repeat:no-repeat; background-size:contain, contain; background-position: 2px top; color:#000; background-color:#fff; margin:0 !important; font-weight:normal; border-bottom-left-radius:2px; border-bottom-right-radius:2px;max-width:130px;}\n"+
+    "[highlight~=\"BufTabAlternate\"]       {background-repeat:no-repeat; background-size:contain, contain; background-position: 2px top; margin:0 !important; cursor:pointer !important;max-width:130px;}\n"+
+    "[highlight~=\"BufTab\"]                {background-repeat:no-repeat; background-size:contain, contain; background-position: 2px top; margin:0 !important; cursor:pointer !important;max-width:130px;}\n"+
+    "[highlight~=\"BufTab\"]:hover          {color:#2e3330;background-color: #88b090; border-bottom-left-radius:2px; border-bottom-right-radius:2px;}\n"+
+    "[highlight~=\"BufTabAlternate\"]:hover {color:#2e3330;background-color: #88b090; border-bottom-left-radius:2px; border-bottom-right-radius:2px;}\n"
+, true);
