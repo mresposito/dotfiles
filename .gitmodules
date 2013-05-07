@@ -7,3 +7,9 @@
 [submodule "vim/bundle/closetag"]
 	path = vim/bundle/closetag
 	url = https://github.com/vim-scripts/closetag.vim.git
+[submodule "vim/bundle/coffeScript"]
+	path = vim/bundle/coffeScript
+	url = https://github.com/kchmck/vim-coffee-script
+[submodule "vim/bundle/gitGutter"]
+	path = vim/bundle/gitGutter
+	url = https://github.com/jisaacks/GitGutter.git
