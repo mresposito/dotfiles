@@ -320,7 +320,6 @@ map ,std :SDelete<CR>
 let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_show_sessions = 1
 let g:startify_bookmarks = [ '~/.vimrc', '~/.zshrc' ]
-let g:startify_custom_indices = ['a',',','.','j','k','b', 'h', 't', 'n', 's']
 
 """""""""""""""""""""""""""""""""""""""""
 " Projects
