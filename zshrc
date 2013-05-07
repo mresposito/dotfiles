@@ -10,6 +10,8 @@ MYZSH=$HOME/.zsh
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
+# turn off auto renaming title
+DISABLE_AUTO_TITLE="true"
 # Comment this out to disable weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
 
@@ -19,7 +21,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump history-substring-search osx  svn vi-mode lol macports compleat zsh-syntax-highlighting zsh-history-substring-search zsh-output-highlighting)
+plugins=(git autojump osx  svn vi-mode lol compleat)
 # plugins not in use
 # ssh-agent
 
@@ -31,11 +33,25 @@ source $MYZSH/completion.zsh
 source $MYZSH/aliases.zsh
 source $MYZSH/functions.zsh
 source $MYZSH/sunAndMoon.zsh-theme
+source $MYZSH/plugins/syntaxHighlighting/zsh-syntax-highlighting.zsh
+source $MYZSH/plugins/zshHistorySubstringSearch/zsh-history-substring-search.plugin.zsh
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
 
-# Customize to your needs...
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/mre/.rbenv/bin:/Users/mre/.rbenv/versions/1.9.3-p327/bin/:/usr/texbin:/Users/mre/bin/play-2.0.4:/Users/mre/bin
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+###
+# vim substring search options
+###
+# bind arrow up
+for keycode in '[' '0'; do
+    bindkey "^[${keycode}A" history-substring-search-up
+    bindkey "^[${keycode}B" history-substring-search-down
+done
+unset keycode
+# bind vim mode keys
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down

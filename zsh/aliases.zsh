@@ -38,6 +38,7 @@ alias -g dr='python /Users/mre/myDict/dict.py -r o'
 alias -g ddd='python /Users/mre/myDict/dict.py -d'
 
 # more git aliases
+alias gs='git status '
 alias grma='git ls-files --deleted -z | xargs -0 git rm'
 alias gsa='git submodule add '
 alias gsua='git submodule foreach git pull origin master'
