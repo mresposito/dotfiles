@@ -1,3 +1,12 @@
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/csapprox"]
+	path = vim/bundle/csapprox
+	url = https://github.com/godlygeek/csapprox.git
+[submodule "vim/bundle/autoclose"]
+	path = vim/bundle/autoclose
+	url = https://github.com/Townk/vim-autoclose.git
+[submodule "vim/bundle/closetag"]
+	path = vim/bundle/closetag
+	url = https://github.com/vim-scripts/closetag.vim.git
