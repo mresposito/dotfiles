@@ -13,3 +13,18 @@
 [submodule "vim/bundle/gitGutter"]
 	path = vim/bundle/gitGutter
 	url = https://github.com/jisaacks/GitGutter.git
+[submodule "vim/bundle/repeat"]
+	path = vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = git://github.com/majutsushi/tagbar
+[submodule "vim/bundle/tabular"]
+	path = vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "vim/bundle/tComment"]
+	path = vim/bundle/tComment
+	url = https://github.com/tomtom/tcomment_vim.git
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
