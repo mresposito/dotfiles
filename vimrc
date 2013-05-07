@@ -247,8 +247,8 @@ noremap ,z    :ZoomWin<CR>
 
 " ************************* Syntastic! ****************************
 
-let g:syntastic_python_checker = 'pylint'
-map ,2 :SyntasticToggleMode<CR>
+" let g:syntastic_python_checker = 'pylint'
+" map ,2 :SyntasticToggleMode<CR>
 
 " ************************* Compiling options ****************************
 if has("mac")
@@ -319,24 +319,19 @@ map ,sts :SSave<CR>
 map ,std :SDelete<CR>
 let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_show_sessions = 1
-let g:startify_bookmarks = [ '~/.vimrc' ]
+let g:startify_bookmarks = [ '~/.vimrc', '~/.zshrc' ]
 let g:startify_custom_indices = ['a',',','.','j','k','b', 'h', 't', 'n', 's']
-
-hi StartifyBracket ctermfg=240
-hi StartifyNumber  ctermfg=215
-hi StartifyPath    ctermfg=245
-hi StartifySlash   ctermfg=240
 
 """""""""""""""""""""""""""""""""""""""""
 " Projects
 """""""""""""""""""""""""""""""""""""""""
 
 set rtp+=~/.vim/bundle/vim-project/
-call project#rc("~")
+" call project#rc("~")
 
 " the title for all files will be gollum
-Project 'myDict'
-" " the title for only this file will be todo
-File    'myDict/dict.py'                         , 'dictionary'
-File    'myDict/scraper.py'                      , 'scraper'
-"
+" Project 'myDict'
+" " " the title for only this file will be todo
+" File    'myDict/dict.py'                         , 'dictionary'
+" File    'myDict/scraper.py'                      , 'scraper'
+" "
