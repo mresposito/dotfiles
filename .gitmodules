@@ -28,3 +28,24 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/startify"]
+	path = vim/bundle/startify
+	url = https://github.com/mhinz/vim-startify.git
+[submodule "vim/bundle/surround"]
+	path = vim/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/supertab"]
+	path = vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
+[submodule "vim/bundle/spaceBar"]
+	path = vim/bundle/spaceBar
+	url = https://github.com/spiiph/vim-space.git
+[submodule "vim/bundle/CSApprox"]
+	path = vim/bundle/CSApprox
+	url = https://github.com/godlygeek/csapprox.git
+[submodule "vim/bundle/scala"]
+	path = vim/bundle/scala
+	url = https://github.com/derekwyatt/vim-scala.git
+[submodule "vim/bundle/project"]
+	path = vim/bundle/project
+	url = https://github.com/vim-scripts/project.vim--Miorin.git
