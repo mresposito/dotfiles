@@ -309,3 +309,34 @@ ia !+ !=
 ca eariler earlier
 ca !+ !=
 ca ~? ~/
+
+"""""""""""""""""""""""""""""""""""""""""
+" Startify
+"""""""""""""""""""""""""""""""""""""""""
+map ,sta :Startify<CR>
+map ,stl :SLoad<CR>
+map ,sts :SSave<CR>
+map ,std :SDelete<CR>
+let g:startify_session_dir = '~/.vim/sessions'
+let g:startify_show_sessions = 1
+let g:startify_bookmarks = [ '~/.vimrc' ]
+let g:startify_custom_indices = ['a',',','.','j','k','b', 'h', 't', 'n', 's']
+
+hi StartifyBracket ctermfg=240
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+
+"""""""""""""""""""""""""""""""""""""""""
+" Projects
+"""""""""""""""""""""""""""""""""""""""""
+
+set rtp+=~/.vim/bundle/vim-project/
+call project#rc("~")
+
+" the title for all files will be gollum
+Project 'myDict'
+" " the title for only this file will be todo
+File    'myDict/dict.py'                         , 'dictionary'
+File    'myDict/scraper.py'                      , 'scraper'
+"
