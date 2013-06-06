@@ -21,7 +21,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump osx  svn vi-mode lol compleat)
+plugins=(git autojump osx  svn vi-mode lol compleat brew pip sbt scala)
 # plugins not in use
 # ssh-agent
 
@@ -38,7 +38,7 @@ source $MYZSH/plugins/zshHistorySubstringSearch/zsh-history-substring-search.plu
 
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
 
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/mre/.rbenv/bin:/Users/mre/.rbenv/versions/1.9.3-p327/bin/:/usr/texbin:/Users/mre/bin/play-2.0.4:/Users/mre/bin
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/mre/.rbenv/bin:/Users/mre/.rbenv/versions/1.9.3-p327/bin/:/usr/texbin:/Users/mre/bin/play-curr:/Users/mre/bin
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -55,3 +55,4 @@ unset keycode
 # bind vim mode keys
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+export PATH=$PATH:~/src/play/play-cur

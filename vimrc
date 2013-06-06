@@ -13,6 +13,7 @@ call pathogen#infect()
 syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
 
+let mapleader = ","               " easier.
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 set guioptions-=T                 " hide toolbar
@@ -96,7 +97,6 @@ noremap <silent> ,o :!open assignment.pdf<CR><CR>
 noremap <Up>   g;
 noremap <Down> g,
 noremap <S-Tab> <C-o>
-noremap ,j :jumps<CR>
 
 "better visual
 vnoremap < <gv
@@ -142,6 +142,8 @@ noremap <left> [s
 noremap K <S-Up>
 noremap J <S-Down>
 
+nnoremap T J
+
 " deselect highlight
 nmap <silent> ,/ :nohlsearch<CR>
 
@@ -184,7 +186,8 @@ set ttimeoutlen=50
 " ************************* Ctrl-P *******************************
 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'line', 'changes', 'undo']
 
-let g:ctrlp_working_path_mode = 0
+" let g:ctrlp_working_path_mode = 0
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cache_dir = $HOME.'/.vim/ctrlpcache/'
 let g:ctrlp_open_multiple_files = '2vr'
 let g:ctrlp_follow_symlinks = 0
@@ -221,11 +224,7 @@ if has("mac")
   set csprg=/usr/local/bin/cscope
 endif
 
-" ********************* Lusty  ****************
-map ,f :LustyBufferExplorer<CR>
-map ,x :LustyFilesystemExplorerFromHere<CR>
 
-"
 " ************************* C, C++ Settings *****************************
 iab cerr      std::cerr <<
 iab cout      std::cout <<
@@ -242,8 +241,6 @@ if exists(":Tabularize")
     nmap ,a: :Tabularize /:\zs<CR>
     vmap ,a: :Tabularize /:\zs<CR>
 endif
-" ************************* ZoomWin! ****************************
-noremap ,z    :ZoomWin<CR>
 
 " ************************* Syntastic! ****************************
 
@@ -321,16 +318,15 @@ let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_show_sessions = 1
 let g:startify_bookmarks = [ '~/.vimrc', '~/.zshrc' ]
 
-"""""""""""""""""""""""""""""""""""""""""
-" Projects
-"""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""
+" Easy Tags
+"""""""""""""""""
 
-set rtp+=~/.vim/bundle/vim-project/
-" call project#rc("~")
+let g:easytags_file = '~/.vim/tags'
 
-" the title for all files will be gollum
-" Project 'myDict'
-" " " the title for only this file will be todo
-" File    'myDict/dict.py'                         , 'dictionary'
-" File    'myDict/scraper.py'                      , 'scraper'
-" "
+set errorformat=%E\ %#[error]\ %#%f:%l:\ %m,%-Z\ %#[error]\ %p^,%-C\ %#[error]\ %m
+set errorformat+=,%W\ %#[warn]\ %#%f:%l:\ %m,%-Z\ %#[warn]\ %p^,%-C\ %#[warn]\ %m
+set errorformat+=,%-G%.%#
+
+noremap <silent> ff :cf target/quickfix/sbt.quickfix<CR>
+noremap <silent> fn :cn<CR>
