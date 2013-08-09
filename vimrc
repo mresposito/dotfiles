@@ -330,3 +330,8 @@ set errorformat+=,%-G%.%#
 
 noremap <silent> ff :cf target/quickfix/sbt.quickfix<CR>
 noremap <silent> fn :cn<CR>
+
+"""""""""""""""""
+" Mark down
+"""""""""""""""""
+let g:vim_markdown_folding_disabled=1 " disable folding

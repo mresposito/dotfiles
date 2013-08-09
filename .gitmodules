@@ -94,3 +94,6 @@
 [submodule "rack"]
 	path = rack
 	url = git://github.com/chneukirchen/rack.git
+[submodule "vim/bundle/vim-markdown"]
+	path = vim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
