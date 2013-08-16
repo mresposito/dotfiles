@@ -97,3 +97,6 @@
 [submodule "vim/bundle/vim-markdown"]
 	path = vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "vim/bundle/htmTemplateHaskell"]
+	path = vim/bundle/htmTemplateHaskell
+	url = https://github.com/pbrisbin/html-template-syntax

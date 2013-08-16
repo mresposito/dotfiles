@@ -36,9 +36,7 @@ source $MYZSH/sunAndMoon.zsh-theme
 source $MYZSH/plugins/syntaxHighlighting/zsh-syntax-highlighting.zsh
 source $MYZSH/plugins/zshHistorySubstringSearch/zsh-history-substring-search.plugin.zsh
 
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
-
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/mre/.rbenv/bin:/Users/mre/.rbenv/versions/1.9.3-p327/bin/:/usr/texbin:/Users/mre/bin/play-curr:/Users/mre/bin
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/sbin:/usr/local/mysql/bin:/Users/mre/.rbenv/bin:/Users/mre/.rbenv/versions/1.9.3-p327/bin/:/usr/texbin:/Users/mre/bin/play-curr:$HOME/bin:$HOME/.cabal/bin
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
