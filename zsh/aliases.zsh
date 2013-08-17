@@ -31,11 +31,14 @@ alias -g df='df -h'
 alias -g grep='grep --color=auto'
 
 # get fast dictionary functions in spanish
-alias -g da='python /Users/mre/myDict/dict.py -a'
-alias -g ds='python /Users/mre/myDict/dict.py -s'
-alias -g dv='python /Users/mre/myDict/dict.py -v o'
-alias -g dr='python /Users/mre/myDict/dict.py -r o'
-alias -g ddd='python /Users/mre/myDict/dict.py -d'
+alias -g da='python  $HOME/Dropbox/spanishDict/dict.py -a'
+alias -g ds='python  $HOME/Dropbox/spanishDict/dict.py -s'
+alias -g dv='python  $HOME/Dropbox/spanishDict/dict.py -v o'
+alias -g dr='python  $HOME/Dropbox/spanishDict/dict.py -r o'
+alias -g ddd='python $HOME/Dropbox/spanishDict/dict.py -d'
+
+alias -g todo='cat /Users/michele/todo/recent.md'
+alias -g editodo='vim /Users/michele/todo/recent.md'
 
 # more git aliases
 alias gs='git status '

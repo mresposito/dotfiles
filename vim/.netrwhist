@@ -1,6 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/mre/courScala/patmat/submission'
-let g:netrw_dirhist_2='/Users/mre/courScala/forcomp/lib_managed'
-let g:netrw_dirhist_3='/Users/mre/courScala/forcomp/src'
-let g:netrw_dirhist_4='/Users/mre/.oh-my-zsh'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/Users/michele/base/coursera/standalone/opendata/conf'
+let g:netrw_dirhist_2='/Users/michele/results/SimpleQueryStringCountJob-13.07.[01-7]'
+let g:netrw_dirhist_3='/Users/michele/tmp/MAUPerCourse'
+let g:netrw_dirhist_4='/Users/michele/base/coursera/site/app/www/static/pages/home/course'
+let g:netrw_dirhist_5='/Users/michele/base/coursera/standalone/growthAnalysis/src/main'
+let g:netrw_dirhist_6='/Users/mre/Library/Application Support/Firefox/profiles'
+let g:netrw_dirhist_7='/Users/mre/base/coursera/courservice/app/org/coursera/playcour/binders'
