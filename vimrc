@@ -290,6 +290,9 @@ let g:AutoClosePairs_del = "`"
 let g:tex_flavor='latex'
 set grepprg=grep\ -nH\ $*
 let g:Tex_leader = ','
+let g:Tex_CompileRule_pdf='pdflatex -interaction=nonstopmode $*'
+let g:Tex_DefaultTargetFormat= 'pdf'
+let g:Tex_ViewRule_pdf='open'
 
 " Correct some spelling mistakes
 ia teh the
