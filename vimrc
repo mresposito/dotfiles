@@ -94,7 +94,6 @@ noremap ,e :e#<CR>
 noremap <silent> ,o :!open assignment.pdf<CR><CR>
 
 " fast jumps
-noremap <Up>   g;
 noremap <Down> g,
 noremap <S-Tab> <C-o>
 
@@ -135,6 +134,7 @@ vnoremap - za
 noremap + 5= 
 
 " better shortcuts for spell check
+noremap <Up>   z=
 noremap <right> ]s
 noremap <left> [s
 
@@ -338,3 +338,9 @@ noremap <silent> fn :cn<CR>
 " Mark down
 """""""""""""""""
 let g:vim_markdown_folding_disabled=1 " disable folding
+
+"""""""
+" Close tags!
+"""""""
+autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
+autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag.vim/plugin/closetag.vim

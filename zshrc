@@ -21,7 +21,8 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump osx  svn vi-mode lol compleat brew pip sbt scala)
+plugins=(git autojump osx vi-mode pip sbt scala)
+# plugins=(git autojump osx vi-mode compleat pip sbt scala)
 # plugins not in use
 # ssh-agent
 
