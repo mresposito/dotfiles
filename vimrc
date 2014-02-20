@@ -67,12 +67,9 @@ set timeoutlen=500                " Lower timeout for mappings
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>           
 
-" Useful status information at bottom of screen
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
-
 " Or use vividchalk
 
-if has( "gui_macvim")
+if has("gui_macvim")
   colorscheme softchalk
 else
   colorscheme greenchalkTerm
@@ -139,10 +136,8 @@ noremap <right> ]s
 noremap <left> [s
 
 " fast navigation
-noremap K <S-Up>
-noremap J <S-Down>
-
-nnoremap T J
+" noremap K <S-Up>
+" noremap J <S-Down>
 
 " deselect highlight
 nmap <silent> ,/ :nohlsearch<CR>
@@ -344,3 +339,12 @@ let g:vim_markdown_folding_disabled=1 " disable folding
 """""""
 autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
+
+""""""
+" Fugitive
+""""""
+map ,gs :Gstatus<CR>
+map ,gc :Gcommit -m 
+map ,gl :Git pull<CR>
+map ,gp :Git push<CR>
+map ,gd :Gdiff<CR>

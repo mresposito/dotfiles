@@ -36,6 +36,7 @@ alias -g ds='python  $HOME/Dropbox/spanishDict/dict.py -s'
 alias -g dv='python  $HOME/Dropbox/spanishDict/dict.py -v o'
 alias -g dr='python  $HOME/Dropbox/spanishDict/dict.py -r o'
 alias -g ddd='python $HOME/Dropbox/spanishDict/dict.py -d'
+alias -g imsg='~/.rvm/gems/ruby-2.0.0-p0/gems/imsg-0.0.2/bin/imsg'
 
 alias -g todo='cat /Users/michele/todo/recent.md'
 alias -g editodo='vim /Users/michele/todo/recent.md'
@@ -45,3 +46,4 @@ alias gs='git status '
 alias grma='git ls-files --deleted -z | xargs -0 git rm'
 alias gsa='git submodule add '
 alias gsua='git submodule foreach git pull origin master'
+alias mvim="/Applications/MacVim.app/mvim"

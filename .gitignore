@@ -7,4 +7,5 @@
 *.la
 *.a
 vim/sessions/*
+vim/spell/*
 pentadactyl/*

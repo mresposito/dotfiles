@@ -1,3 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/mre/Dropbox/dotfiles/zsh/plugins'
+let g:netrw_dirhist_2='/Users/mre/base/mre/climbingFriend/test'
+let g:netrw_dirhist_3='/Users/mre/base/mre/climbingFriend/test/com/climbingfriend/mail'
+let g:netrw_dirhist_4='/Users/mre/base/mre/climbingFriend/app/com/climbingfriend/models'
+let g:netrw_dirhist_5='/Users/mre/base/mre/climbingFriend/test/com/climbingfriend'
+let g:netrw_dirhist_6='/Users/mre/Dropbox/Documents/info202/summaries/02-13'
+let g:netrw_dirhist_7='/Users/mre/Dropbox/Documents/span208/homework/02-10'
+let g:netrw_dirhist_8='/Users/mre/Dropbox/Documents/span208/homework/02-19'
